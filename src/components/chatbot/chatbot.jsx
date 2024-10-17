@@ -27,7 +27,7 @@ const ChatBot = () => {
   const handleSendClick = () => {
     if (inputValue.trim() !== "") { 
 
-      axios.get(`http://127.0.0.1:8000/agent/chat/?id=1&user_input=${inputValue}`)
+      axios.get(`http://16.171.169.228:8000/agent/chat/?id=1&user_input=${inputValue}`)
       .then((res) => {
         console.log(res.data.response.msg);
 
