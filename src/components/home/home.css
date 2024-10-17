@@ -1,0 +1,29 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background: rgb(44, 44, 44);
+}
+  
+a {
+  text-decoration: none;
+}
+
+
+
+/* 
+
+.section-heading{
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  width: 90%;
+  font-size: 40px;
+  color: white;
+} */

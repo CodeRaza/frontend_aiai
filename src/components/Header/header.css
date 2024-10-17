@@ -1,0 +1,150 @@
+  
+  /* Navbar */
+  .navbar {
+    width: 100%;
+    padding: 20px 0;
+    z-index: 10000 !important;
+    position: fixed;
+  }
+  
+  .navbar-container {
+    width: 90%;
+    max-width: 1100px;
+    background-color: #fff; /* Pure white background */
+    border-radius: 10px;
+    padding: 1px 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    z-index: 70;
+
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    background-color: #fff; /* Pure white background */
+    gap: 15px;
+    padding: 10px 0;
+    border-radius: 10px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links li a {
+    color: #000; /* Menu links color is now black */
+    padding: 10px 10px;
+    border-radius: 5px;
+    position: relative; /* Required for the underline hover effect */
+    transition: color 0.3s ease;
+  }
+  
+  .start-free-trial {
+    padding: 10px 20px;
+    background-color: #000000; /* Green background for the button */
+    color: #ffffff !important; /* White text */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  /* Hover Effect */
+  .nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #000; /* Black underline for hover effect */
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links li a:hover::after {
+    width: 100%; /* Full-width line on hover */
+  }
+  
+  .nav-links li a:hover {
+    color: #444; /* Dark gray color change on hover for contrast */
+  }
+  
+  .btn-outline {
+    border: 1px solid #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn-outline:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  
+  /* Toggle Menu */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: black; /* Changed to black to match menu links */
+    margin: 2px 0;
+    transition: 0.3s;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1100px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 90%;
+        gap: 15px;
+        text-align: right;
+        position:fixed;
+
+        top: 67px;
+        background-color: #fff;
+        right: 5%;/* White background on mobile as well */
+      }
+    .navbar-container{
+      width: 90%;
+    }
+    .nav-links.active {
+    padding: 10px 10px;
+      display: flex;
+    }
+  
+    .menu-toggle {
+        
+      display: flex;
+    }
+  
+  
+    .hero-text, .hero-video {
+      max-width: 100%;
+    }
+  
+    .hero-text h1 {
+      font-size: 2em;
+    }
+  
+    /* .hero-buttons {
+      flex-direction: column;
+  
+      width: 200px;
+      gap: 10px;
+    } */
+  }
+  
