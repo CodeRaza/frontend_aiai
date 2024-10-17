@@ -61,7 +61,7 @@ const ChatBot = () => {
       console.log("Current char:", msg[index]); // Debugging the current character being appended
   
       // Ensure msg[index] is valid
-      if (index < msg.length) {
+      if (index <= msg.length) {
         setDisplayedResponse((prev) => {
           // Make sure the previous value isn't undefined by initializing it as an empty string
           return (prev || "") + msg[index]; 
