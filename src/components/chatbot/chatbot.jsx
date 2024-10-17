@@ -62,15 +62,17 @@ const ChatBot = () => {
   
       // Ensure msg[index] is valid
       if (index < msg.length) {
-        setDisplayedResponse((prev = "") => {
-          return prev + (msg[index] || ""); // Make sure we're appending valid characters
+        setDisplayedResponse((prev) => {
+          // Make sure the previous value isn't undefined by initializing it as an empty string
+          return (prev || "") + msg[index]; 
         });
-        index++;
+        index++; // Increment the index after appending the current character
       } else {
         clearInterval(typingInterval); // Stop the interval when done
       }
     }, 30);
   };
+  
   
 
 
