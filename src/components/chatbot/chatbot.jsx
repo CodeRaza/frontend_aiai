@@ -60,18 +60,19 @@ const ChatBot = () => {
       console.log("Current index:", index); // Debugging the index
       console.log("Current char:", msg[index]); // Debugging the current character being appended
   
-      // Ensure msg[index] is valid
-      if (index <= msg.length) {
-        setDisplayedResponse((prev) => {
-          // Make sure the previous value isn't undefined by initializing it as an empty string
-          return (prev || "") + msg[index]; 
+      // Ensure msg[index] is valid and within bounds
+      if (index < msg.length) {
+        setDisplayedResponse((prev = "") => {
+          // Make sure we're appending valid characters, and avoid 'undefined' in the previous state
+          return (prev || "") + (msg[index] || ""); 
         });
         index++; // Increment the index after appending the current character
       } else {
         clearInterval(typingInterval); // Stop the interval when done
       }
-    }, 30);
+    }, 30);  // Adjust the interval time to fit the desired typing speed
   };
+  
   
   
 
@@ -132,11 +133,9 @@ const ChatBot = () => {
           {!showResponse ? (
             <div className="icon-box">
               <img className="icon" src={iconImage} alt="Chatbot Icon" />
-              <h2>Lorem, ipsum dolor.</h2>
+              <h2>IAIA</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic suscipit
-                consequatur soluta iusto, incidunt ut ipsum impedit inventore nam
-                ducimus.
+                YOUR ADVANCE VA.
               </p>
             </div>
           ) : (
