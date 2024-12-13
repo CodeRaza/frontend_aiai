@@ -29,13 +29,13 @@ body {
 
 .chat-window {
     position: fixed;
-    bottom: 80px; /* Adjusted for button visibility */
+    bottom: 80px; 
     right: 20px;
     width: 320px;
     max-width: 100%;
     z-index: 100000;
     height: 70%;
-    background-color: #fff;
+    background-color: #191823;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -44,12 +44,11 @@ body {
 
 .chat-window.fullscreen {
     width: 100%;
-    margin-top: 10vh;
-    height: 90%;
-    top: 0; /* Ensured it starts from the top */
+    height: 100%;
+    top: 0; 
     right: 0;
     left: 0;
-    border-radius: 0; /* Remove rounded corners in fullscreen */
+    border-radius: 0;
 }
 
 .chat-header {
@@ -58,7 +57,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10; /* Ensure header is above other elements */
+    z-index: 10;
 }
 
 .chat-header h4 {
@@ -79,6 +78,24 @@ body {
     padding: 5px 5px;
     cursor: pointer; /* Cursor pointer for header icons */
 }
+
+.chat-header-buttons {
+  width: 100%;
+  display: flex;
+  gap: 6px;
+}
+
+.chat-sign-up-btn {
+  padding: 10px 10px;
+  background-color: #3d9bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  
+}
+
+
 
 .chat-body {
     padding: 20px;
@@ -102,7 +119,6 @@ body {
     overflow-y: scroll;
     height: 95vh;
   }
-  
 
   .icon-box {
     text-align: center;
@@ -115,8 +131,6 @@ body {
     margin-bottom: 15px;
   }
 
-
-  
   .icon-box h2 {
     margin: 10px 0;
   }
@@ -128,26 +142,62 @@ body {
     line-height: 1.6;
   }
 
-  
-
-
   .suggestion-items {
     display: flex;
     gap: 15px;
     overflow-x: scroll;
   }
 
+  /* AI RESPONSE */
   
-  .dummy-response {
-    height: 40vh !important;
+  .ai-response-container {
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 20%;
   }
 
-  .dummy-response-mobile {
-    height: 100vh !important;
+  .ai-box-response {
+    margin-top: 5%;
+  }
+
+  .text-based-ai-response {
+    color: white !important;
   }
 
   .hide {
     display: none;
+  }
+
+  /* AI RESPONSE END */
+
+  /* COOL CONTAINER END */
+
+  .amazing-boxes {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    color: white !important;
+  }
+
+  .bigger-box, .single-box {
+    padding: 10px 10px;
+    background-color: #2a2841;
+    border-radius: 30px;
+    padding-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .single-box {
+    margin-bottom: 10px;
+  }
+
+  .title-box {
+    margin-left: 10px;
+  }
+
+  .bigger-box img, .single-box img {
+    border-radius: 30px;
   }
     
   .suggestions-box {
@@ -182,26 +232,46 @@ body {
     height: 25px;
     margin-right: 10px;
   }
-  
 
 .input-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border-radius: 40px;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 40px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 10%;
+  width: 60%;
+  left: 20%;
 }
 
-/* When chat is full-screen, input box behaves normally */
 .chat-window.fullscreen .input-box {
-    position: relative;
-    bottom: initial;
+    position: fixed;
+    bottom: 3%;
     top: initial;
+}
+
+@media (max-width: 800px) {
+  .amazing-boxes {
+    display: block !important;
+  }
+
+  .amazing-boxes img {
+    width: 100%;
+  }
+
+  .bigger-box, .boxes-set {
+    margin-bottom: 20px;
+  }
+
+  .input-box {
+    width: 90%;
+    left: 4%;
+  }
 }
 
 .input {
@@ -239,7 +309,6 @@ body {
     filter: invert(100%);
 }
 
-
 .input {
     flex-grow: 1;
     padding: 10px 15px;
@@ -260,7 +329,6 @@ body {
     border: none;
 }
 
-
 .send-btn-opened {
     background-color: transparent;
     cursor: pointer;
@@ -272,7 +340,6 @@ body {
     padding: 10px 10px;
 }
 
-
 .send-icon {
     width: 30px;
     height: 30px;
@@ -283,16 +350,15 @@ body {
     margin-right: 10px;
 }
 
-
 @media (max-width: 800px) {
-    .container {
-      max-width: 95%;
-      width: 95%;
-    }
+  .container {
+    max-width: 95%;
+    width: 95%;
   }
+}
 
-  @media (max-width: 1100px) {
-    .icon-box p {
-      width: 80%;
-    }
+@media (max-width: 1100px) {
+  .icon-box p {
+    width: 80%;
   }
+}
