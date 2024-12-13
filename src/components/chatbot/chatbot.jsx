@@ -60,6 +60,31 @@ const ChatBot = () => {
   const [inputValue, setInputValue] = useState("");
   const [showResponse, setShowResponse] = useState(false); 
   const [displayedResponse, setDisplayedResponse] = useState(""); 
+  const [loading, setLoading] = useState(false); // For loading animation
+  const [customerData, setCustomerData] = useState({
+    name: "",
+    email: "",
+    booking_time: "",
+    dishes_selected: "",
+  });
+  const [foodItems, setFoodItems] = useState([]);
+
+  const handleCustomerDataChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmitCustomerData = () => {
+    // Send the collected customer data to the backend to save in the database
+    axios.post('http://127.0.0.1:8000/api/customers/', customerData)
+      .then((res) => {
+        console.log('Customer data saved successfully:', res.data);
+        
+      })
+      .catch((err) => {
+        console.error('Error saving customer data:', err);
+      });
+  };
 
   const handleSuggestionClick = (text) => {
     setInputValue(text); 
@@ -68,18 +93,20 @@ const ChatBot = () => {
   
   const handleSendClick = () => {
     if (inputValue.trim() !== "") { 
-
-      axios.get(`http://localhost:8000/agent/chat/?id=1&user_input=${inputValue}`)
+      setLoading(true);
+      axios.get(`http://127.0.0.1:8000/api/ai/?agent_id=1&user_input=${inputValue}`)
       .then((res) => {
-        console.log(res.data.response.msg);
-
+        console.log(res.data.response);
+        // setFoodItems(res.data.menu_items);
         setShowResponse(true); 
         setDisplayedResponse(''); 
-        simulateTyping(res.data.response.msg);
+        simulateTyping(res.data.response);
       })
       .catch(err => {
         console.log(err);
-      })
+      }).finally(() => {
+        setLoading(false);
+      });
       
     } else {
       alert("Please enter a message before sending."); 
@@ -94,24 +121,24 @@ const ChatBot = () => {
     }
   
     // Reset the response before starting
-    setDisplayedResponse("");  
-    let index = 0;
+    setDisplayedResponse(msg);  
+    // let index = -1;
   
-    // Typing simulation
-    const typingInterval = setInterval(() => {
-      console.log("Current index:", index); 
-      console.log("Current char:", msg[index]);
+    // // Typing simulation
+    // const typingInterval = setInterval(() => {
+    //   console.log("Current index:", index); 
+    //   console.log("Current char:", msg[index]);
       
-      if (index < msg.length) {
-        setDisplayedResponse((prev = "") => {
+    //   if (index < msg.length) {
+    //     setDisplayedResponse((prev = "") => {
           
-          return (prev || "") + (msg[index] || ""); 
-        });
-        index++; 
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 30);  
+    //       return (prev || "") + (msg[index] || ""); 
+    //     });
+    //     index++; 
+    //   } else {
+    //     clearInterval(typingInterval);
+    //   }
+    // }, 30);  
   };
   
   
@@ -136,6 +163,15 @@ const ChatBot = () => {
     setIsFullScreen(!isFullScreen);
   };
 
+  const handleKeyPress = (e) => {
+    console.log(e.key);
+    
+    if (e.key === "Enter") {
+      handleSendClick();
+    }
+  };
+
+
   return (
     <div className="App">
       <div className="chat-btn" onClick={toggleChat}>
@@ -159,11 +195,17 @@ const ChatBot = () => {
           <div className="container">
           {!showResponse ? (
             <div className={"ai-box-response"} >
-              <AmazingBoxes />
-            </div>
+                {loading ? <div className="loading-spinner"></div> : <AmazingBoxes />}
+              </div>
           ) : (
             <div className={"ai-response-container"} >
-              <p className="text-based-ai-response">{displayedResponse}</p>
+              <p className="text-based-ai-response" dangerouslySetInnerHTML={{__html: displayedResponse}}></p>
+              {/* {foodItems.length > 0 && foodItems.map((item, index) => (
+                    <div key={index} className="food-item">
+                      <img src={item.image_url} alt={item.name} className="food-image" />
+                      <p>{item.name}</p>
+                    </div>
+                ))} */}
             </div>
           )}
 
@@ -185,6 +227,7 @@ const ChatBot = () => {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyPress}
                 />
                 <div className="input-image" onClick={handleSendClick}>
                   <img src={SentImage} className="send-icon" alt="Send Icon" />
@@ -192,7 +235,7 @@ const ChatBot = () => {
               </div>
             </div>
           </div>
-
+          
         </div>
       )}
     </div>
