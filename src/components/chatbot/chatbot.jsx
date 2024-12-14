@@ -13,7 +13,6 @@ import BoxIMage2 from '../../Images/box-image2.png'
 function AmazingBoxes({ai_response_data}) {
 
   const [boxesData, setBoxesData] = useState([])
-  const url = 'http://3.147.70.68:8000'
   useEffect(() => {
     setBoxesData(ai_response_data);
   })
@@ -57,6 +56,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const [isFullScreen, setIsFullScreen] = useState(true);
+  const url = 'http://3.147.70.68:8000'
 
   const [inputValue, setInputValue] = useState("");
   const [showResponse, setShowResponse] = useState(false); 
