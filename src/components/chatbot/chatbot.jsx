@@ -9,10 +9,11 @@ import BoxIMage1 from '../../Images/box-image1.jpg'
 import BoxIMage2 from '../../Images/box-image2.png'
 
 
+
 function AmazingBoxes({ai_response_data}) {
 
   const [boxesData, setBoxesData] = useState([])
-
+  const url = 'http://3.147.70.68:8000'
   useEffect(() => {
     setBoxesData(ai_response_data);
   })
@@ -76,7 +77,7 @@ const ChatBot = () => {
 
   const handleSubmitCustomerData = () => {
     // Send the collected customer data to the backend to save in the database
-    axios.post('http://127.0.0.1:8000/api/customers/', customerData)
+    axios.post(`${url}/api/customers/`, customerData)
       .then((res) => {
         console.log('Customer data saved successfully:', res.data);
         
@@ -94,7 +95,7 @@ const ChatBot = () => {
   const handleSendClick = () => {
     if (inputValue.trim() !== "") { 
       setLoading(true);
-      axios.get(`http://127.0.0.1:8000/api/ai/?agent_id=1&user_input=${inputValue}`)
+      axios.get(`${url}/api/ai/?agent_id=1&user_input=${inputValue}`)
       .then((res) => {
         console.log(res.data.response);
         // setFoodItems(res.data.menu_items);
